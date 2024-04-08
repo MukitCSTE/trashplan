@@ -4,12 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Embedded Planner5D View</title>
+    <style>
+        /* This style will make the iframe take the full width of the screen */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Prevent scrolling */
+        }
+        #myIframe {
+            width: 100vw; /* 100% of the viewport width */
+            height: 100vh; /* 100% of the viewport height */
+            border: none;
+        }
+    </style>
 </head>
 <body>
 
     <!-- Begin iframe Code -->
-    <iframe src="https://planner5d.com/v?key=0e6a9faabf44beb35e8c32c93b1ede1c&viewMode=2d" style="width:500px; height:960px; border:none;" allowfullscreen></iframe>
+    <iframe id="myIframe" allowfullscreen></iframe>
     <!-- End iframe Code -->
+
+    <script>
+        window.onload = function() {
+            var encodedUrl = "aHR0cHM6Ly9wbGFubmVyNWQuY29tL3Y/a2V5PTBlNmE5ZmFhYmY0NGJlYjM1ZThjMzJjOTNiMWVkZTFjJnZpZXdNb2RlPTJk";
+            var decodedUrl = atob(encodedUrl); // Decode the URL at runtime
+            document.getElementById('myIframe').src = decodedUrl;
+        }
+    </script>
 
 </body>
 </html>
