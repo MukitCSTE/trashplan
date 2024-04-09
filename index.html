@@ -1,37 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embedded Planner5D View</title>
+<html>
+  <head>
+    <title>Convert Equirectangular to Cubemap</title>
     <style>
-        /* This style will make the iframe take the full width of the screen */
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden; /* Prevent scrolling */
-        }
-        #myIframe {
-            width: 100vw; /* 100% of the viewport width */
-            height: 100vh; /* 100% of the viewport height */
-            border: none;
-        }
+      body { margin: 0; }
+      canvas { display: block; }
     </style>
-</head>
-<body>
-
-    <!-- Begin iframe Code -->
-    <iframe id="myIframe" allowfullscreen></iframe>
-    <!-- End iframe Code -->
-
+  </head>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        window.onload = function() {
-            var encodedUrl = "aHR0cHM6Ly9wbGFubmVyNWQuY29tL3Y/a2V5PTBlNmE5ZmFhYmY0NGJlYjM1ZThjMzJjOTNiMWVkZTFjJnZpZXdNb2RlPTJk";
-            var decodedUrl = atob(encodedUrl); // Decode the URL at runtime
-            document.getElementById('myIframe').src = decodedUrl;
-        }
-    </script>
+      // Set up the scene, camera, and renderer as usual
+      var scene = new THREE.Scene();
+      var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      var renderer = new THREE.WebGLRenderer();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
 
-</body>
+      // Use OrbitControls to allow panning around with the mouse
+      var controls = new THREE.OrbitControls(camera, renderer.domElement);
+      camera.position.set(0, 0, 0.1);
+      controls.update();
+
+      // Load the equirectangular image
+      var loader = new THREE.TextureLoader();
+      loader.load('https://drive.google.com/file/d/1oSjgyvwVjGE3YlKTnbraIIHhSDVQDJ6S/view?usp=sharing', function(texture) {
+        texture.mapping = THREE.EquirectangularReflectionMapping;
+        scene.background = texture;
+      });
+
+      // Update the scene
+      function animate() {
+        requestAnimationFrame(animate);
+        controls.update();
+        renderer.render(scene, camera);
+      }
+      animate();
+    </script>
+  </body>
 </html>
