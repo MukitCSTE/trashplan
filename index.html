@@ -1,41 +1,52 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Convert Equirectangular to Cubemap</title>
-    <style>
-      body { margin: 0; }
-      canvas { display: block; }
-    </style>
-  </head>
-  <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script>
-      // Set up the scene, camera, and renderer as usual
-      var scene = new THREE.Scene();
-      var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      var renderer = new THREE.WebGLRenderer();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      document.body.appendChild(renderer.domElement);
-
-      // Use OrbitControls to allow panning around with the mouse
-      var controls = new THREE.OrbitControls(camera, renderer.domElement);
-      camera.position.set(0, 0, 0.1);
-      controls.update();
-
-      // Load the equirectangular image
-      var loader = new THREE.TextureLoader();
-      loader.load('https://drive.google.com/file/d/1oSjgyvwVjGE3YlKTnbraIIHhSDVQDJ6S/view?usp=sharing', function(texture) {
-        texture.mapping = THREE.EquirectangularReflectionMapping;
-        scene.background = texture;
-      });
-
-      // Update the scene
-      function animate() {
-        requestAnimationFrame(animate);
-        controls.update();
-        renderer.render(scene, camera);
-      }
-      animate();
-    </script>
-  </body>
-</html>
+<?xml version="1.0" encoding="utf-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <soapenv:Header>
+        <omsi:ResponseHeader xmlns:omsi="http://schemas.compassplus.com/twcms/1.0/omsi.xsd">
+            <RType>Do</RType>
+            <RID>8B276F9A344A4BABBA7D36F105D97E9C</RID>
+            <Result>Processed</Result>
+        </omsi:ResponseHeader>
+    </soapenv:Header>
+    <soapenv:Body xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <omsi:Response xmlns:omsi="http://schemas.compassplus.com/twcms/1.0/omsi.xsd">
+            <ResponseDocument>
+                <Response SysId="2914877" GUID="{8B276F9A-344A-4BAB-BA7D-36F105D97E9C}">
+                    <Transaction SysId="2914967" State="PROCESSED" ProcessedBy="29927201" ProcessingDateTime="20240920225314">
+                        <ProcessingResult Code="0" Message="Transaction successfully executed">
+                            <USERDEFINEDCOMMAND ID="GetContractInfo">
+                                <ProcessingResult SourceCommand="EXECUTE" ProcessedCommand="EXECUTE" Code="0" Message="Operation executed successfully" ProcessingIndex="2">
+                                    <USERDEFINEDCOMMAND>
+                                        <SYSID>29</SYSID>
+                                        <ID>GetContractInfo</ID>
+                                        <LOGENTRYSYSID>30657509</LOGENTRYSYSID>
+                                        <LOGENTRYGUID>{C17DF0D6-6AB3-4E4C-B6A8-93ABD0E4E508}</LOGENTRYGUID>
+                                        <USERDEFINEDCOMMANDPARAMS TYPE="1">
+                                            <PARAM ID="OPERDATE">20240825</PARAM>
+                                        </USERDEFINEDCOMMANDPARAMS>
+                                        <USERDEFINEDCOMMANDPARAMS TYPE="2">
+                                            <PARAM ID="RAWDATA">Succesfully</PARAM>
+                                            <PARAM ID="RECORDS">PHJlY29yZHM+CiAgPHJlY29yZD4KICAgIDxDT05UUkFDVE5PPkNSLTAwMDAwMDA0PC9DT05UUkFDVE5PPgogICAgPE1QQU1PVU5UPjYwODwvTVBBTU9VTlQ+CiAgICA8RlVMTEFNT1VOVD43MTkyPC9GVUxMQU1PVU5UPgogICAgPERPTV9BQ0NPVU5UX1JFTUFJTj4xMTk5PC9ET01fQUNDT1VOVF9SRU1BSU4+CiAgICA8SU5UX0FDQ09VTlRfUkVNQUlOPjQ3MjQ8L0lOVF9BQ0NPVU5UX1JFTUFJTj4KICAgIDxTVEFURU1FTlRfREFURT4xMy8xMC8yMDI0PC9TVEFURU1FTlRfREFURT4KICAgIDxEQUZfREFURT4yNS8xMC8yMDI0PC9EQUZfREFURT4KICAgIDxQUk5fRFVFX0RBVEU+MDcvMTEvMjAyNDwvUFJOX0RVRV9EQVRFPgogICAgPERVRV9EQVRFPjIyLzExLzIwMjQ8L0RVRV9EQVRFPgogICAgPE9USEVSVU5QQUlEPjkyNzwvT1RIRVJVTlBBSUQ+CiAgICA8U1RBVFVTREVTQ1JJUFRJT04+UGVuZGluZzwvU1RBVFVTREVTQ1JJUFRJT04+CiAgICA8T1ZEX1BFUklPRF9DQUxDPjY8L09WRF9QRVJJT0RfQ0FMQz4KICA8L3JlY29yZD4KICA8cmVjb3JkPgogICAgPENPTlRSQUNUTk8+Q1ItMDAwMDAwMDI8L0NPTlRSQUNUTk8+CiAgICA8TVBBTU9VTlQ+OTYwPC9NUEFNT1VOVD4KICAgIDxGVUxMQU1PVU5UPjM4NjE8L0ZVTExBTU9VTlQ+CiAgICA8RE9NX0FDQ09VTlRfUkVNQUlOPjg0MTwvRE9NX0FDQ09VTlRfUkVNQUlOPgogICAgPElOVF9BQ0NPVU5UX1JFTUFJTj4yMDEwPC9JTlRfQUNDT1VOVF9SRU1BSU4+CiAgICA8U1RBVEVNRU5UX0RBVEU+MjAvMTAvMjAyNDwvU1RBVEVNRU5UX0RBVEU+CiAgICA8REFGX0RBVEU+MjkvMTAvMjAyNDwvREFGX0RBVEU+CiAgICA8UFJOX0RVRV9EQVRFPjI0LzExLzIwMjQ8L1BSTl9EVUVfREFURT4KICAgIDxEVUVfREFURT4xMy8xMS8yMDI0PC9EVUVfREFURT4KICAgIDxPVEhFUlVOUEFJRD4xODQ3PC9PVEhFUlVOUEFJRD4KICAgIDxTVEFUVVNERVNDUklQVElPTj5QZW5kaW5nPC9TVEFUVVNERVNDUklQVElPTj4KICAgIDxPVkRfUEVSSU9EX0NBTEM+NTwvT1ZEX1BFUklPRF9DQUxDPgogIDwvcmVjb3JkPgogIDxyZWNvcmQ+CiAgICA8Q09OVFJBQ1ROTz5DUi0wMDAwMDAwNTwvQ09OVFJBQ1ROTz4KICAgIDxNUEFNT1VOVD45OTQ8L01QQU1PVU5UPgogICAgPEZVTExBTU9VTlQ+NDQzMjwvRlVMTEFNT1VOVD4KICAgIDxET01fQUNDT1VOVF9SRU1BSU4+Mjg4OTwvRE9NX0FDQ09VTlRfUkVNQUlOPgogICAgPElOVF9BQ0NPVU5UX1JFTUFJTj40NDQxPC9JTlRfQUNDT1VOVF9SRU1BSU4+CiAgICA8U1RBVEVNRU5UX0RBVEU+MDcvMTAvMjAyNDwvU1RBVEVNRU5UX0RBVEU+CiAgICA8REFGX0RBVEU+MTIvMTAvMjAyNDwvREFGX0RBVEU+CiAgICA8UFJOX0RVRV9EQVRFPjAxLzExLzIwMjQ8L1BSTl9EVUVfREFURT4KICAgIDxEVUVfREFURT4yMi8xMS8yMDI0PC9EVUVfREFURT4KICAgIDxPVEhFUlVOUEFJRD4yMTk8L09USEVSVU5QQUlEPgogICAgPFNUQVRVU0RFU0NSSVBUSU9OPkFjdGl2ZTwvU1RBVFVTREVTQ1JJUFRJT04+CiAgICA8T1ZEX1BFUklPRF9DQUxDPjY8L09WRF9QRVJJT0RfQ0FMQz4KICA8L3JlY29yZD4KICA8cmVjb3JkPgogICAgPENPTlRSQUNUTk8+Q1ItMDAwMDAwMDM8L0NPTlRSQUNUTk8+CiAgICA8TVBBTU9VTlQ+ODE0PC9NUEFNT1VOVD4KICAgIDxGVUxMQU1PVU5UPjE2MzA8L0ZVTExBTU9VTlQ+CiAgICA8RE9NX0FDQ09VTlRfUkVNQUlOPjE3NDk8L0RPTV9BQ0NPVU5UX1JFTUFJTj4KICAgIDxJTlRfQUNDT1VOVF9SRU1BSU4+MTI1PC9JTlRfQUNDT1VOVF9SRU1BSU4+CiAgICA8U1RBVEVNRU5UX0RBVEU+MDUvMTAvMjAyNDwvU1RBVEVNRU5UX0RBVEU+CiAgICA8REFGX0RBVEU+MTQvMTAvMjAyNDwvREFGX0RBVEU+CiAgICA8UFJOX0RVRV9EQVRFPjE1LzExLzIwMjQ8L1BSTl9EVUVfREFURT4KICAgIDxEVUVfREFURT4wOC8xMS8yMDI0PC9EVUVfREFURT4KICAgIDxPVEhFUlVOUEFJRD4xMjk0PC9PVEhFUlVOUEFJRD4KICAgIDxTVEFUVVNERVNDUklQVElPTj5JbmFjdGl2ZTwvU1RBVFVTREVTQ1JJUFRJT04+CiAgICA8T1ZEX1BFUklPRF9DQUxDPjk8L09WRF9QRVJJT0RfQ0FMQz4KICA8L3JlY29yZD4KICA8cmVjb3JkPgogICAgPENPTlRSQUNUTk8+Q1ItMDAwMDAwMDE8L0NPTlRSQUNUTk8+CiAgICA8TVBBTU9VTlQ+ODQzPC9NUEFNT1VOVD4KICAgIDxGVUxMQU1PVU5UPjY5NzY8L0ZVTExBTU9VTlQ+CiAgICA8RE9NX0FDQ09VTlRfUkVNQUlOPjEzMzU8L0RPTV9BQ0NPVU5UX1JFTUFJTj4KICAgIDxJTlRfQUNDT1VOVF9SRU1BSU4+Mzc0MTwvSU5UX0FDQ09VTlRfUkVNQUlOPgogICAgPFNUQVRFTUVOVF9EQVRFPjEyLzEwLzIwMjQ8L1NUQVRFTUVOVF9EQVRFPgogICAgPERBRl9EQVRFPjE2LzEwLzIwMjQ8L0RBRl9EQVRFPgogICAgPFBSTl9EVUVfREFURT4xMi8xMS8yMDI0PC9QUk5fRFVFX0RBVEU+CiAgICA8RFVFX0RBVEU+MzAvMTEvMjAyNDwvRFVFX0RBVEU+CiAgICA8T1RIRVJVTlBBSUQ+MTgxNjwvT1RIRVJVTlBBSUQ+CiAgICA8U1RBVFVTREVTQ1JJUFRJT04+QWN0aXZlPC9TVEFUVVNERVNDUklQVElPTj4KICAgIDxPVkRfUEVSSU9EX0NBTEM+MTwvT1ZEX1BFUklPRF9DQUxDPgogIDwvcmVjb3JkPgogIDxyZWNvcmQ+CiAgICA8Q09OVFJBQ1ROTz5DUi0wMDAwMDAwMzwvQ09OVFJBQ1ROTz4KICAgIDxNUEFNT1VOVD44MTQ8L01QQU1PVU5UPgogICAgPEZVTExBTU9VTlQ+MTYzMDwvRlVMTEFNT1VOVD4KICAgIDxET01fQUNDT1VOVF9SRU1BSU4+MTc0OTwvRE9NX0FDQ09VTlRfUkVNQUlOPgogICAgPElOVF9BQ0NPVU5UX1JFTUFJTj4xMjU8L0lOVF9BQ0NPVU5UX1JFTUFJTj4KICAgIDxTVEFURU1FTlRfREFURT4wNS8xMC8yMDI0PC9TVEFURU1FTlRfREFURT4KICAgIDxEQUZfREFURT4xNC8xMC8yMDI0PC9EQUZfREFURT4KICAgIDxQUk5fRFVFX0RBVEU+MTUvMTEvMjAyNDwvUFJOX0RVRV9EQVRFPgogICAgPERVRV9EQVRFPjA4LzExLzIwMjQ8L0RVRV9EQVRFPgogICAgPE9USEVSVU5QQUlEPjEyOTQ8L09USEVSVU5QQUlEPgogICAgPFNUQVRVU0RFU0NSSVBUSU9OPkluYWN0aXZlPC9TVEFUVVNERVNDUklQVElPTj4KICAgIDxPVkRfUEVSSU9EX0NBTEM+OTwvT1ZEX1BFUklPRF9DQUxDPgogIDwvcmVjb3JkPgogICA8cmVjb3JkPgogICAgPENPTlRSQUNUTk8+Q1ItMDAwMDAwMDY8L0NPTlRSQUNUTk8+CiAgICA8TVBBTU9VTlQ+ODE0PC9NUEFNT1VOVD4KICAgIDxGVUxMQU1PVU5UPjE2MzA8L0ZVTExBTU9VTlQ+CiAgICA8RE9NX0FDQ09VTlRfUkVNQUlOPjE3NDk8L0RPTV9BQ0NPVU5UX1JFTUFJTj4KICAgIDxJTlRfQUNDT1VOVF9SRU1BSU4+MTI1PC9JTlRfQUNDT1VOVF9SRU1BSU4+CiAgICA8U1RBVEVNRU5UX0RBVEU+MDUvMTAvMjAyNDwvU1RBVEVNRU5UX0RBVEU+CiAgICA8REFGX0RBVEU+MTQvMTAvMjAyNDwvREFGX0RBVEU+CiAgICA8UFJOX0RVRV9EQVRFPjE1LzExLzIwMjQ8L1BSTl9EVUVfREFURT4KICAgIDxEVUVfREFURT4wOC8xMS8yMDI0PC9EVUVfREFURT4KICAgIDxPVEhFUlVOUEFJRD4xMjk0PC9PVEhFUlVOUEFJRD4KICAgIDxTVEFUVVNERVNDUklQVElPTj5JbmFjdGl2ZTwvU1RBVFVTREVTQ1JJUFRJT04+CiAgICA8T1ZEX1BFUklPRF9DQUxDPjk8L09WRF9QRVJJT0RfQ0FMQz4KICA8L3JlY29yZD4KPC9yZWNvcmRzPg==
+											</PARAM>
+                                        </USERDEFINEDCOMMANDPARAMS>
+                                    </USERDEFINEDCOMMAND>
+                                </ProcessingResult>
+                                <USERDEFINEDCOMMANDPARAMS TYPE="1">
+                                    <ProcessingResult SourceCommand="INIT" ProcessedCommand="INIT" Code="0" Message="Operation executed successfully" ProcessingIndex="1"/>
+                                </USERDEFINEDCOMMANDPARAMS>
+                            </USERDEFINEDCOMMAND>
+                        </ProcessingResult>
+                        <ProcessingMessage Type="MESSAGE" ReportedBy="29927201" ReportDateTime="20240920225314">Transaction successfully executed</ProcessingMessage>
+                    </Transaction>
+                    <RequestDetails>
+                        <LoadedBy>29927201</LoadedBy>
+                        <LoadingDateTime>20242009225314</LoadingDateTime>
+                        <TransactionCount>1</TransactionCount>
+                        <ProcessedTransactionCount>1</ProcessedTransactionCount>
+                        <FailedProcessingsCount>0</FailedProcessingsCount>
+                        <ProcessingMessageCount>1</ProcessingMessageCount>
+                    </RequestDetails>
+                </Response>
+            </ResponseDocument>
+        </omsi:Response>
+    </soapenv:Body>
+</soapenv:Envelope>
