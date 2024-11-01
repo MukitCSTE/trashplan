@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML Display</title>
+</head>
 <body>
-<p>bbbb</p>	
-<?xml version="1.0" encoding="utf-8"?>
+    <pre id="xmlDisplay"></pre>
+
+    <script>
+        // XML data as a string
+        const xmlData = `<?xml version="1.0" encoding="utf-8"?>
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <soapenv:Header>
         <omsi:ResponseHeader xmlns:omsi="http://schemas.compassplus.com/twcms/1.0/omsi.xsd">
@@ -53,6 +61,10 @@
             </ResponseDocument>
         </omsi:Response>
     </soapenv:Body>
-</soapenv:Envelope>
+</soapenv:Envelope>`;
+
+        // Display XML data in the <pre> tag with escaping special characters
+        document.getElementById("xmlDisplay").textContent = xmlData;
+    </script>
 </body>
 </html>
